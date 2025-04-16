@@ -60,8 +60,6 @@ import com.android.internal.annotations.VisibleForTesting;
 import com.android.server.telecom.LogUtils.EventTimer;
 import com.android.server.telecom.flags.FeatureFlags;
 
-import lineageos.providers.LineageSettings;
-
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -508,12 +506,12 @@ public class Ringer {
                         Log.i(this, "Create ringer with custom vibration effect");
                     }
                     final ContentResolver cr = mContext.getContentResolver();
-                    if (LineageSettings.System.getInt(cr,
-                            LineageSettings.System.INCREASING_RING, 0) != 0) {
-                        float startVolume = LineageSettings.System.getFloat(cr,
-                                LineageSettings.System.INCREASING_RING_START_VOLUME, 0.1f);
-                        int rampUpTime = LineageSettings.System.getInt(cr,
-                                LineageSettings.System.INCREASING_RING_RAMP_UP_TIME, 20);
+                    if (Settings.System.getInt(cr,
+                            Settings.System.INCREASING_RING, 0) != 0) {
+                        float startVolume = Settings.System.getFloat(cr,
+                                Settings.System.INCREASING_RING_START_VOLUME, 0.1f);
+                        int rampUpTime = Settings.System.getInt(cr,
+                                Settings.System.INCREASING_RING_RAMP_UP_TIME, 20);
                         mVolumeShaperConfig =
                                 new VolumeShaper.Configuration.Builder()
                                         .setDuration(rampUpTime * 1000)
